@@ -140,7 +140,7 @@
     <p>5. 学校長による把握</p>
     <p>6. 公的機関支援が受けられない場合</p>
     <p>7. 教育課程に照らした評価</p>
-    <a class="btn" href="https://surala.jp/about/">すららについてはこちら</a>
+    <a class="btn external" href="https://surala.jp/about/">すららについてはこちら</a>
   </div>
 
   <div class="section">
@@ -162,22 +162,43 @@
 
   <div class="section">
     <h2>アクセス</h2>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3279.7868477004195!2d135.5308906!3d34.7105558!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e1012c5f7539%3A0x6c40682b6e88821d!2z5YWQ56ul55m66YGU5pSv5o-044O75pS-6Kqy5b6M562J44OH44Kk44K144O844OT44K5IFNVQ-ODh-OCpOOCug!5e0!3m2!1sja!2sjp!4v1754554767129!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    <p>大阪市都島区都島北通 2-13-5<br>ライオンズマンション都島第2 102</p>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3279.7868477004195!2d135.5308906!3d34.7105558!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e1012c5f7539%3A0x6c40682b6e88821d!2z5YWQ56ul55m66YGU5pSv5o-044O75pS-6Kqy5b6M562J44OH44Kk44K144O844OT44K5IFNVQ-ODh-OCpOOCug!5e0!3m2!1sja!2sjp!4v1754556047070!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>    <p>大阪市都島区都島北通 2-13-5<br>ライオンズマンション都島第2 102</p>
   </div>
 
   <div class="section">
     <h2>お問い合わせ</h2>
     <p>Instagram DM または TEL：<a href="tel:0661676798">06-6167-6798</a></p>
-    <p>お気軽にお問い合わせください。</p>
-    <a class="btn" href="https://www.instagram.com/suc_days/">Instagramへ</a>
+    <a class="btn external" href="https://www.instagram.com/suc_days/">Instagramへ</a>
   </div>
 
   <div class="section">
     <h2>関連リンク</h2>
-    <a href="https://suc-group.co.jp/">
+    <a class="external" href="https://suc-group.co.jp/">
       <img src="11.svg" alt="SUCグループ" width="100%">
     </a>
   </div>
+
+  <script>
+    // 外部リンク失敗時にerror.htmlへ遷移
+    document.querySelectorAll('a.external').forEach(link => {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        const url = this.href;
+
+        fetch(url, { mode: 'no-cors' }) // mode: no-corsだと失敗検出できないが、存在確認には使える
+          .then(() => {
+            window.location.href = url;
+          })
+          .catch(() => {
+            window.location.href = "error.html";
+          });
+
+        // タイムアウト用に5秒でエラー画面へ
+        setTimeout(() => {
+          window.location.href = "error.html";
+        }, 5000);
+      });
+    });
+  </script>
 </body>
 </html>
